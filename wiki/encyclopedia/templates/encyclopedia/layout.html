@@ -1,0 +1,63 @@
+<!-- encyclopedia/templates/encyclopedia/layout.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* 基本样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh; /* 让整个页面占据视口高度 */
+        }
+        /* 左侧栏样式 */
+        .sidebar {
+            width: 250px;
+            background-color: #f4f4f4;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            height: 100%; /* 让左侧栏占据整个高度 */
+        }
+        /* 右侧内容样式 */
+        .content {
+            flex: 1;
+            padding: 20px;
+            height: 100%; /* 让右侧内容占据整个高度 */
+            overflow-y: auto; /* 如果内容过多，允许滚动 */
+        }
+        /* 链接样式 */
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        /* 标题样式 */
+        h1 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 左侧栏 -->
+    <div class="sidebar">
+        <h1>Wiki</h1>
+        <a href="{% url 'index' %}">Home</a><br>
+        <form action="{% url 'search' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="q" placeholder="Search Encyclopedia">
+            <button type="submit">Search</button>
+        </form>
+        <a href="{% url 'new_page' %}">Create New Page</a>
+    </div>
+
+    <!-- 右侧内容 -->
+    <div class="content">
+        {% block body %}
+        {% endblock %}
+    </div>
+</body>
+</html>

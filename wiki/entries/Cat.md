@@ -1,0 +1,1 @@
+Cat is a smart animal, and you don't have to continue reading this text cause I don't want to say any useful info about cats :)
